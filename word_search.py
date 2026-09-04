@@ -8,7 +8,7 @@
 
 def get_word_list():
     fileName = input("")
-    with open("fileName", "r") as f:
+    with open("WORDS.txt", "r") as f:
         return [line.strip() for line in f]
 
 def read_letters_file():
