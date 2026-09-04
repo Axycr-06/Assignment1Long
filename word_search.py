@@ -7,23 +7,21 @@
 """
 
 def get_word_list():
-    with open("WORDS.txt", "r") as f:
-        return [line.strip() for line in f]
+    file_name = input()
+    with open(file_name, "r") as file:
+        return [line.strip().lower() for line in file if line.strip()]
 
 def read_letters_file():
-    fileName = input("")
-    with open("fileName", "r") as f:
-        return [list(line.strip()) for line in f]
+    file_name = input()
+    with open(file_name, "r") as file:
+        return [line.split() for line in file if line.strip()]
 
 
 def find_words_in_line(line, valid_words):
-
-    line = "".join(line) #line is a list so it turns it into a string
-
+    line = "".join(line).lower()
     for word in valid_words:
-        if word in line:
-            yield word #returns the found word
-	
+        if len(word) >= 3 and word in line:
+            yield word
 
 
 def find_horizontal_words(grid, valid_words):
@@ -56,23 +54,22 @@ def find_diagonal_words(grid, valid_words):
 
 
 def print_words(words):
-	"""Print the found words in alphabetical order, one per line."""
-	pass
+    """Print the found words in alphabetical order, one per line."""
+    for word in sorted(set(words)):
+        print(word)
 
 
 def main():
-	"""Read input files, search the grid, and print the results."""
+    """Read input files, search the grid, and print the results."""
+    word_list = get_word_list()
+    letters_grid = read_letters_file()
 
-    
-	word_list = get_word_list()
-	letters_grid = read_letters_file()
+    all_words = []
+    all_words.extend(find_horizontal_words(letters_grid, word_list))
+    all_words.extend(find_vertical_words(letters_grid, word_list))
+    all_words.extend(find_diagonal_words(letters_grid, word_list))
 
-	all_words = []
-	all_words.extend(find_horizontal_words(letters_grid, word_list))
-	all_words.extend(find_vertical_words(letters_grid, word_list))
-	#all_words.extend(find_diagonal_words(letters_grid, word_list))
-
-	print_words(all_words)
+    print_words(all_words)
 
 
 if __name__ == "__main__":
