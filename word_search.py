@@ -7,7 +7,6 @@
 """
 
 def get_word_list():
-    fileName = input("")
     with open("WORDS.txt", "r") as f:
         return [line.strip() for line in f]
 
