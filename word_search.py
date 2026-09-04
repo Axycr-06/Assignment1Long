@@ -16,18 +16,37 @@ def read_letters_file():
 
 
 def find_words_in_line(line, valid_words):
+
+    line = "".join(line) #line is a list so it turns it into a string
+
+    for word in valid_words:
+        if word in line:
+            yield word #returns the found word
 	
-	pass
 
 
 def find_horizontal_words(grid, valid_words):
-	"""Find words across rows in both directions."""
-	pass
+	
+	#L-R
+    for row in grid:
+        yield from find_words_in_line(row, valid_words)
+
+    #R-L
+    for row in grid:
+        yield from find_words_in_line(row[::-1], valid_words) #[::-1] flips the row
 
 
 def find_vertical_words(grid, valid_words):
-	"""Find words down columns in both directions."""
-	pass
+    """Find words down columns in both directions."""
+    # T-B
+    for col in range(len(grid[0])):
+        column = [grid[row][col] for row in range(len(grid))]
+        yield from find_words_in_line(column, valid_words)
+
+    # B-T
+    for col in range(len(grid[0])):
+        column = [grid[row][col] for row in range(len(grid)-1, -1, -1)]
+        yield from find_words_in_line(column, valid_words)
 
 
 def find_diagonal_words(grid, valid_words):
@@ -42,7 +61,7 @@ def print_words(words):
 
 def main():
 	"""Read input files, search the grid, and print the results."""
-    
+
     
 	word_list = get_word_list()
 	letters_grid = read_letters_file()
