@@ -7,7 +7,7 @@
 """
 
 def get_word_list():
-    with open("word-list.txt", "r") as f:
+    with open("WORDS.txt", "r") as f:
         return [line.strip() for line in f]
 
 def read_letters_file():
@@ -16,7 +16,6 @@ def read_letters_file():
 
 
 def find_words_in_line(line, valid_words):
-	"""Find legal words in one left-to-right sequence of letters."""
 	
 	pass
 
@@ -43,6 +42,8 @@ def print_words(words):
 
 def main():
 	"""Read input files, search the grid, and print the results."""
+    
+    
 	word_list = get_word_list()
 	letters_grid = read_letters_file()
 
