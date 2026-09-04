@@ -7,11 +7,13 @@
 """
 
 def get_word_list():
-    with open("WORDS.txt", "r") as f:
+    fileName = input("")
+    with open("fileName", "r") as f:
         return [line.strip() for line in f]
 
 def read_letters_file():
-    with open("grid_02.txt", "r") as f:
+    fileName = input("")
+    with open("fileName", "r") as f:
         return [list(line.strip()) for line in f]
 
 
