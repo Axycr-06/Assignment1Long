@@ -69,7 +69,7 @@ def main():
 	all_words = []
 	all_words.extend(find_horizontal_words(letters_grid, word_list))
 	all_words.extend(find_vertical_words(letters_grid, word_list))
-	all_words.extend(find_diagonal_words(letters_grid, word_list))
+	#all_words.extend(find_diagonal_words(letters_grid, word_list))
 
 	print_words(all_words)
 
