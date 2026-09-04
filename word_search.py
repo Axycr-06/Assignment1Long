@@ -11,7 +11,7 @@ def get_word_list():
         return [line.strip() for line in f]
 
 def read_letters_file():
-    with open("grid.txt", "r") as f:
+    with open("grid_02.txt", "r") as f:
         return [list(line.strip()) for line in f]
 
 
