@@ -25,7 +25,7 @@ def find_words_in_line(line, valid_words):
 
 
 def find_horizontal_words(grid, valid_words):
-	
+
 	#L-R
     for row in grid:
         yield from find_words_in_line(row, valid_words)
@@ -70,13 +70,13 @@ def main():
     word_list = get_word_list()
     letters_grid = read_letters_file()
 
-    all_words = []
-    all_words.extend(find_horizontal_words(letters_grid, word_list))
-    all_words.extend(find_vertical_words(letters_grid, word_list))
-    all_words.extend(find_diagonal_words(letters_grid, word_list))
-
-    print_words(all_words)
-
+    if len(letters_grid) != 0:
+        all_words = []
+        all_words.extend(find_horizontal_words(letters_grid, word_list))
+        all_words.extend(find_vertical_words(letters_grid, word_list))
+        all_words.extend(find_diagonal_words(letters_grid, word_list))
+        
+        print_words(all_words)
 
 if __name__ == "__main__":
 	main()
