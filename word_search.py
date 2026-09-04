@@ -49,8 +49,14 @@ def find_vertical_words(grid, valid_words):
 
 
 def find_diagonal_words(grid, valid_words):
-	"""Find words along upper-left to lower-right diagonals."""
-	pass
+    # Upper-left to lower-right diagonals
+    for row in range(len(grid)):
+        diagonal = [grid[row + i][i] for i in range(min(len(grid) - row, len(grid[0])))]
+        yield from find_words_in_line(diagonal, valid_words)
+
+    for col in range(1, len(grid[0])):
+        diagonal = [grid[i][col + i] for i in range(min(len(grid) - col, len(grid[0]) - col))]
+        yield from find_words_in_line(diagonal, valid_words)
 
 
 def print_words(words):
@@ -67,7 +73,7 @@ def main():
     all_words = []
     all_words.extend(find_horizontal_words(letters_grid, word_list))
     all_words.extend(find_vertical_words(letters_grid, word_list))
-    all_words.extend(find_diagonal_words(letters_grid, word_list))
+    #all_words.extend(find_diagonal_words(letters_grid, word_list))
 
     print_words(all_words)
 
